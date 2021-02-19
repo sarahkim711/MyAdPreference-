@@ -13,16 +13,21 @@ let transitionVid;
 
 //booleans to draw functions
 let mainMenuBool = true;
-let adPref1Bool = false;
+let adFacebookBool = false;
 
 let fb;
 let fbposYspeed = 3;
+let backgroundimgX =0
+let backgroundimgY =0
+
 
 function preload(){
   fb = loadImage("images/fb1swirl.png");
+  backgroundimg = loadImage ("images/backgroundswirl.png");
 }
 
 function facebook (){
+
   circleButton1X = windowWidth/6;
   circleButton1Y = windowHeight/2;
 
@@ -39,9 +44,11 @@ function facebook (){
 
 }
 function setup() {
+
   canvas = createCanvas(windowWidth, windowHeight);
   canvas.position(0,0);
   canvas.style("z-index", "-1");
+
 
   //create your video, style it then hide it until we want to show it
   //you need to add your own video here.
@@ -56,6 +63,11 @@ function setup() {
   circleButton1X = windowWidth/6;
   circleButton1Y = windowHeight/2;
 
+  backgroundimgX = windowWidth/2
+  backgroundimgY = windowHeight/2
+  imageMode(CENTER);
+  image (backgroundimg,backgroundimgX, backgroundimgY, windowWidth,windowHeight);
+
   mainMenuReturnX = 60;
   mainMenuReturnY = 70;
 }
@@ -63,14 +75,26 @@ function setup() {
 //the main menu function
 function menuButtons(){
   //make sure proper booleans are flipped
-  mainMenuBool = true;
-  adPref1Bool = false;
 
-  background(255);
-  fill(0);
-  //ellipse(circleButton1X, circleButton1Y, 100, 100);
-  imageMode(CENTER);
+  mainMenuBool = true;
+  adFacebookBool = false;
+
+//  background(255);
+imageMode(CENTER);
+//  //ellipse(circleButton1X, circleButton1Y, 100, 100);
 image(fb,circleButton1X, circleButton1Y, 200, 200);
+
+/////////////////////
+if(dist(mouseX, mouseY, mainMenuReturnX, mainMenuReturnY)< 25 && mouseIsPressed){
+  menuButtons();
+}
+if (circleButton1Y > windowHeight || circleButton1Y < 0){
+  fbposYspeed= fbposYspeed * -1;
+}
+
+circleButton1Y = circleButton1Y + fbposYspeed;
+circleButton1X = circleButton1X + random(-10,10);
+
   //check to see if the mouse is over the menu ellipse, if it is and mouse
   //is pressed trigger the videoTransition function
   if(dist(mouseX, mouseY, circleButton1X, circleButton1Y)< 100 && mouseIsPressed){
@@ -82,7 +106,7 @@ image(fb,circleButton1X, circleButton1Y, 200, 200);
 function videoTransition1(){
   //make sure proper booleans are flipped
   mainMenuBool = false;
-  adPref1Bool = false;
+  adFacebookBool = false;
 
   //show the video and play it
   transitionVid.show();
@@ -90,27 +114,26 @@ function videoTransition1(){
   transitionVid.play();
 
   //when the video has ended, trigger the asPref1 function
-  transitionVid.onended(adPref1);
+  transitionVid.onended(adFacebook);
 }
 
-function adPref1(){
+function adFacebook(){
   //hide the video
   transitionVid.hide();
 
   //make sure proper booleans are flipped
   mainMenuBool = false;
-  adPref1Bool = true;
+  adFacebookBool = true;
+
 
   background(255);
   text("Animated Screen", 50, 200);
   ellipse(mainMenuReturnX, mainMenuReturnY, 50, 50);
-  ellipse(mouseX, mouseY, 30, 30);
+  ellipse(mouseX, mouseY, 30,30);
 
   //check to see if the mouse is over the return menu ellipse, if it is and mouse
   //is pressed return to the main menu
-  if(dist(mouseX, mouseY, mainMenuReturnX, mainMenuReturnY)< 25 && mouseIsPressed){
-    menuButtons();
-  }
+
 }
 
 function draw() {
@@ -120,13 +143,16 @@ function draw() {
   //The booleans are flipped back and forth when the different functions are triggered.
 
   //if the main menu boolean is true, keep drawing the menuButtons function
+
   if(mainMenuBool == true){
     menuButtons();
   }
 
   //if the adsPref1 boolean is true, keep drawing the adsPref1 function
-  if(adPref1Bool == true){
-    adPref1();
+
+  if(adFacebookBool == true){
+    adFacebook();
   }
+
 
 }
