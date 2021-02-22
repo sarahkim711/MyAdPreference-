@@ -34,10 +34,6 @@ let googleposXspeed = 3;
 let ig;
 let igposYspeed = 3;
 
-// let mycursor;
-// let mycursorX = mouseX;
-// let mycursorY = mouseY;
-
 let backgroundimgX =0
 let backgroundimgY =0
 let splash;
@@ -78,11 +74,6 @@ function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
   //below makes main menu background black
   background(0);
-//   imageMode(CENTER);
-  // // image (splash,windowWidth/2, windowHeight/3, windowWidth,windowHeight);
-  //  image (blob,windowWidth/2, windowHeight/2, windowWidth,windowHeight);
-  //  imageMode(CORNER);
-  // image (rainbow,-150,-150, windowWidth*1.2,windowHeight*1.2);
   canvas.position(0,0);
   canvas.style("z-index", "-1");
 
@@ -342,7 +333,6 @@ function draw() {
   if(mainMenuBool == true){
     menuButtons();
   }
-
   //if the adsPref1 boolean is true, keep drawing the adsPref1 function
 
   if(adFacebookBool == true){
@@ -354,8 +344,8 @@ function draw() {
   if(adIgBool == true){
     adInstagram();
   }
+
   imageMode(CENTER);
     image(mycursor,mouseX, mouseY, 100,100);
-
 
 }
