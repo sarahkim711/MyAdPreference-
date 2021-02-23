@@ -228,7 +228,7 @@ function googlevideoTransition(){
   background(0);
   //make sure proper booleans are flipped
   mainMenuBool = false;
-  adFacebookBool = false;
+  adGoogleBool = false;
 
   //show the video and play it
   googleTransitionVid.show();
