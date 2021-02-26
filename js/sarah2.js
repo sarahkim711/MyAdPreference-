@@ -14,8 +14,10 @@ let canvas;
 
 //video variable
 let fbTransitionVid;
+let fbScrollVid;
 let googleTransitionVid;
 let igTransitionVid;
+let igScrollVid;
 
 //booleans to draw functions
 let mainMenuBool = true;
@@ -50,6 +52,11 @@ let bottomright;
 let topleft;
 let topright;
 
+//AD images
+let fbADback;
+let fbAD;
+let ggADback;
+let ggAD;
 
 function preload(){
   //mycursor = loadImage(("images/middlefin.png");
@@ -65,7 +72,11 @@ function preload(){
   blob = loadImage("images/blob.png");
   rainbow = loadImage("images/rainbow.png");
   mycursor = loadImage("images/middlefin.png");
-
+  //ad images
+  fbADback = loadImage("images/fbAD1.png");
+  fbAD = loadImage("images/fbAD2.png");
+  ggADback = loadImage("images/ggAD2.png");
+  ggAD = loadImage ("images/ggAD1.png");
 }
 
 
@@ -88,6 +99,13 @@ function setup() {
   fbTransitionVid.style('height', '70%');
   fbTransitionVid.hide();
 
+  fbScrollVid = createVideo(['videos/fbScroll.mov']);
+  fbScrollVid.style('z-index', '2');
+  fbScrollVid.position (windowWidth/20,windowHeight/3.5);
+  fbScrollVid.style('width', '30%');
+  fbScrollVid.style('height', '50%');
+  fbScrollVid.hide();
+
   googleTransitionVid = createVideo(['videos/googleSPIN.mov']);
     googleTransitionVid.style('z-index', '2');
     googleTransitionVid.position (windowWidth/15,windowHeight/5);
@@ -95,12 +113,19 @@ function setup() {
     googleTransitionVid.style('height', '70%');
     googleTransitionVid.hide();
 
-  igTransitionVid = createVideo(['videos/dog.mov']);
+  igTransitionVid = createVideo(['videos/igSPIN.mov']);
   igTransitionVid.style('z-index', '2');
-  igTransitionVid.style('position', 'relative');
-  igTransitionVid.style('width', '100%');
-  igTransitionVid.style('height', '100%');
+  igTransitionVid.position (windowWidth/15,windowHeight/5);
+  igTransitionVid.style('width', '80%');
+  igTransitionVid.style('height', '70%');
   igTransitionVid.hide();
+
+  igScrollVid = createVideo(['videos/igscroll.mov']);
+  igScrollVid.style('z-index', '2');
+  igScrollVid.position (windowWidth/20,windowHeight/20);
+  igScrollVid.style('width', '100%');
+  igScrollVid.style('height', '100%');
+  igScrollVid.hide();
 
   //setting the main menu and return to main menu buttons x and y coordinates
   fbButtonX = windowWidth/6;
@@ -193,8 +218,8 @@ function menuButtons(){
   igButtonY = igButtonY + igposYspeed;
   igButtonX = igButtonX + random(-.8,.8);
 
-
-
+  fbScrollVid.hide();
+  igScrollVid.hide();
 }
 
 ///needed to move the mouse pressed stuff in the mouseReleased function because that
@@ -266,10 +291,10 @@ function googlevideoTransition(){
 }
 function igvideoTransition(){
 
-  background(0);
+//  background(240,204,85);
   //make sure proper booleans are flipped
   mainMenuBool = false;
-
+background(240,204,85);
 
   //show the video and play it
   igTransitionVid.show();
@@ -290,9 +315,21 @@ function adFacebook(){
   adIgBool = false;
 
   background(255);
-  text("Facebook", 50, 200);
-  ellipse(mainMenuReturnX, mainMenuReturnY, 50, 50);
-  ellipse(mouseX, mouseY, 30,30);
+
+  image(fbADback, windowWidth/2, windowHeight/2,windowWidth,windowHeight);
+  imageMode(CENTER);
+  image(fbAD, windowWidth/2, windowHeight/2,windowWidth/2,windowHeight/2);
+
+  fbScrollVid.show();
+  fbScrollVid.style('display', 'inline');
+  fbScrollVid.play();
+
+  fill(255,0,0,);
+  ellipse(mainMenuReturnX, mainMenuReturnY, 100, 100);
+  fill(0,255,0);
+    text("MAIN MENU", 50, 65);
+  ellipse(mouseX, mouseY, 55,55);
+
 
   //check to see if the mouse is over the return menu ellipse, if it is and mouse
   //is pressed return to the main menu
@@ -309,10 +346,16 @@ function adGoogle(){
   adFacebookBool = false;
   adIgBool = false;
 
-  background(255);
-  text("Google", 50, 200);
-  ellipse(mainMenuReturnX, mainMenuReturnY, 50, 50);
-  ellipse(mouseX, mouseY, 30,30);
+  image(ggADback, windowWidth/2, windowHeight/2,windowWidth,windowHeight);
+  imageMode(CENTER);
+  image(ggAD, windowWidth/2, windowHeight/2,windowWidth,windowHeight);
+
+  fill(255,0,0,);
+  ellipse(mainMenuReturnX, mainMenuReturnY, 100, 100);
+  fill(0,255,0);
+    text("MAIN MENU",0, 65);
+  ellipse(mouseX, mouseY, 55,55);
+
 
   //check to see if the mouse is over the return menu ellipse, if it is and mouse
   //is pressed return to the main menu
@@ -329,11 +372,15 @@ function adInstagram(){
   adFacebookBool = false;
   adGoogleBool = false;
 
+  igScrollVid.show();
+  igScrollVid.style('display', 'inline');
+  igScrollVid.play();
 
-  background(255);
-  text("Instagram", 50, 200);
-  ellipse(mainMenuReturnX, mainMenuReturnY, 50, 50);
-  ellipse(mouseX, mouseY, 30,30);
+  fill(255,0,0,);
+  ellipse(mainMenuReturnX, mainMenuReturnY, 100, 100);
+  fill(0,255,0);
+    text("MAIN MENU",0, 65);
+  ellipse(mouseX, mouseY, 55,55);
 
   //check to see if the mouse is over the return menu ellipse, if it is and mouse
   //is pressed return to the main menu
