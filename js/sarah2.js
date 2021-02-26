@@ -43,7 +43,6 @@ let blob;
 let rainbow;
 let mycursor;
 
-
 let bottomleft;
 let bottomleftX;
 let bottomleftY;
@@ -99,7 +98,7 @@ function setup() {
   fbTransitionVid.style('height', '70%');
   fbTransitionVid.hide();
 
-  fbScrollVid = createVideo(['videos/fbScroll.mov']);
+  fbScrollVid = createVideo(['videos/fbscroll.mp4']);
   fbScrollVid.style('z-index', '2');
   fbScrollVid.position (windowWidth/20,windowHeight/3.5);
   fbScrollVid.style('width', '30%');
@@ -120,7 +119,7 @@ function setup() {
   igTransitionVid.style('height', '70%');
   igTransitionVid.hide();
 
-  igScrollVid = createVideo(['videos/igscroll.mov']);
+  igScrollVid = createVideo(['videos/igscroll.mp4']);
   igScrollVid.style('z-index', '2');
   igScrollVid.position (windowWidth/20,windowHeight/20);
   igScrollVid.style('width', '100%');
