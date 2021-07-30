@@ -388,9 +388,7 @@ function adInstagram(){
 }
 
 function draw() {
-  fill(45, 212, 36);
-  textSize(20);
-    text("CLICK ON A LETTER",windowWidth/2, windowHeight/2);
+
   //we need to keep drawing these over and over in draw because you'll
   //have animations and will need to check the status of teh mouse in each function.
   //So we can use booleans to check to see what function we should be drawing.
