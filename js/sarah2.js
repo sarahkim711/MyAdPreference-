@@ -414,8 +414,6 @@ function draw() {
 
   imageMode(CENTER);
     image(mycursor,mouseX, mouseY, 100,100);
-  fill(45, 212, 36);
-  textSize(20);
-    text("CLICK ON A LETTER",windowWidth*2/3, windowHeight/2);
+
 
 }
